@@ -128,7 +128,7 @@
 		<SwitchPreference
 			android:defaultValue="false"
 			android:key="key_misc_allow_binder_thread_on_incoming_calls"
-			android:summary="Possible workaround for 4G calling\nRequires a reboot"
+			android:summary="May fix 4G calling\nRequires a reboot"
 			android:title="Allow binder thread on incoming calls" />
 		<SwitchPreference
             android:defaultValue="false"
