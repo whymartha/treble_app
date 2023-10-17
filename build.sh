@@ -2,13 +2,17 @@
 
 set -e
 
-if [ -d /usr/lib/jvm/java-17-openjdk-amd64/bin/ ];then
-export PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin/:$PATH
-fi
+java_dir=$(ls /usr/lib/jvm | grep -Em1 "java-[0-9]{2}-openjdk")
 
-if [ -z "$ANDROID_HOME" ];then
-    export ANDROID_HOME=$PWD/sdk
-fi
+[ ! -z "$java_dir" ] && \
+{ export PATH=/usr/lib/jvm/$java_dir/bin:$PATH; \
+  export JAVA_HOME=/usr/lib/jvm/$java_dir; }
+
+[ -z "$ANDROID_HOME" ] && \
+export ANDROID_HOME=$PWD/sdk
+
+[ -z "$ANDROID_SDK_ROOT" ] && \
+export ANDROID_SDK_ROOT=$PWD/sdk
 
 gradleTarget=assembleDebug
 target=debug
